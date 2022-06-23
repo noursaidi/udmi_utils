@@ -1,0 +1,44 @@
+#!/usr/bin/env python3
+"""
+
+"""
+
+import glob
+import re
+import os
+import json
+
+import argparse
+
+
+from google.cloud import iot_v1
+
+import os
+import sys
+import time
+
+
+""" 
+client = iot_v1.DeviceManagerClient()
+
+parent = client.location_path('[PROJECT]', '[LOCATION]')
+"""
+
+
+def initIotClient(site_model_path):
+    iot_config_path = os.path.join(site_model_path, 'cloud_iot_config.json')
+    with open(iot_config_path) as f:
+        iot_config = json.load(f)
+
+    print(iot_config)
+    project_id = 'daq1-273309' 
+    cloud_region = iot_config['cloud_region']
+    registry_id = iot_config['registry_id']
+    parent_value = f"projects/{project_id}/locations/{cloud_region}"
+
+    client = iot_v1.DeviceManagerClient()
+
+
+initIotClient('../nes-site-model')
+
+def getListOfDevices(site_model_path)

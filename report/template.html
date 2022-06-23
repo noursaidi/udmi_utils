@@ -1,0 +1,36 @@
+<!doctype html>
+<html>
+<head>
+
+</head>
+<body>
+    <h1>Validation Summary - {{registry_id}}</h1>
+    <span>Date: {{date}}</span>
+    <h2>Errors</h2>
+    <div>
+        Errors seen
+    </div>
+    <table>
+        <thead>
+            <tr>
+            <td>Device ID</td>
+            <td>Metadata</td>
+            <td></td>
+            </tr>
+        </thead>
+        <tbody>
+            {% for device in devices %}
+            <tr>
+                <td>{{device.id}}</td>
+                <td></td>
+            </tr>
+            {% endfor %}
+        </tbody>
+        <tfoot>
+            <tr>
+                <td>sum</td>
+            </tr>
+        </tfoot>
+    </table>
+</body>
+</html>
