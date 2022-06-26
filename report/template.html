@@ -8,7 +8,9 @@
     <span>Date: {{date}}</span>
     <h2>Errors</h2>
     <div>
-        Errors seen
+        {% for error in test.topErrors %}
+            <span>{{error.message}}</span>
+        {% endfor %}
     </div>
     <table>
         <thead>
@@ -19,9 +21,9 @@
             </tr>
         </thead>
         <tbody>
-            {% for device in devices %}
+            {% for device in test.devices.values() %}
             <tr>
-                <td>{{device.id}}</td>
+                <td>{{device.device_id}}</td>
                 <td></td>
             </tr>
             {% endfor %}
