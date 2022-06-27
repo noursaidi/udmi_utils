@@ -14,7 +14,7 @@ from jinja2 import Template
 # load template
 
 
-test = ValidationReport("/Users/nournew/udmi_site_model")
+test = ValidationReport("/Users/nournew/downloads/KGX-17-05-22")
 device_id = 'AHU-1'
 
 """

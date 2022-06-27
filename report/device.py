@@ -18,12 +18,15 @@ class Device:
 
 
     def __init__(self, device_id, site_path):
-        # check if metadata exists
+       
         self.site_path = site_path
         self.device_id = device_id
         
-        # load test results
+        # load test results (validator results)
         self._load_test_results()
+
+        # check if metadata exists and errors
+        
 
     # load all test items
     def _load_test_results(self):

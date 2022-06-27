@@ -1,23 +1,33 @@
 <!doctype html>
 <html>
 <head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.css">
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.js"></script>
+    <script type="text/javascript">
+        $(document).ready( function () {
+            $('#table').DataTable({paging: false});
+        } );
+    </script>
 
 </head>
 <body>
     <h1>Validation Summary - {{registry_id}}</h1>
     <span>Date: {{date}}</span>
-    <h2>Errors</h2>
+    <h2>Top Errors</h2>
     <div>
         {% for error in test.topErrors %}
-            <span>{{error.message}}</span>
+            <div><span>{{error[1]}}</span> {{error[0]}}</div>
         {% endfor %}
     </div>
-    <table>
+    <table id="table">
         <thead>
             <tr>
             <td>Device ID</td>
             <td>Metadata</td>
-            <td></td>
+            <td>Seen</td>
+            <td>State</td>
+            <td>Pointset</td>
             </tr>
         </thead>
         <tbody>
@@ -25,6 +35,9 @@
             <tr>
                 <td>{{device.device_id}}</td>
                 <td></td>
+                <td>{{ 'Y' if device.state.seen or device.event_pointset.seen else 'N' }}</td>
+                <td>{{ device.state.errors|length }}</td>
+                <td>{{ device.event_pointset.errors|length }}</td>
             </tr>
             {% endfor %}
         </tbody>

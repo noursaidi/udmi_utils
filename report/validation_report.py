@@ -1,5 +1,6 @@
 """ Module with helper methods for reading UDMI validation report
 """
+from atexit import register
 import json
 import re
 import os
@@ -15,15 +16,14 @@ from collections import Counter
 class ValidationReport:
     
     devices = {}
-    cloud_config = {}
+    iot_config = {}
+    validation_report = {} # to check points and also get some report data
     errors = None
     devices_seen = 0 
     devices_model = 0 # sum .. filter .. device.seen = True
 
     def __init__(self, site_path):
-       
-        # read cloud_iot_config
-
+    
         # list devices in site model
         try:
             model_devices_dir = os.path.join(site_path, 'devices')
@@ -39,8 +39,29 @@ class ValidationReport:
                 if f.is_dir()]  
         except Exception:
             validated_devices = []
+        
         # merge lists
         device_ids = set(validated_devices + model_devices)
+
+        # read cloud_iot_config
+        try:
+            config_path = f"{os.path.normpath(site_path)}/cloud_iot_config.json"
+            with open(config_path) as f:
+                self.iot_config = json.load(f)
+        except Exception:
+            pass
+
+        # read validator summary
+        try:
+            config_path = f"{os.path.normpath(site_path)}/out/validation_report.json"
+            with open(config_path) as f:
+                self.validation_report = json.load(f)
+        except Exception:
+            pass
+
+        # Read validation summary
+
+        # Read registeration summary
 
         # initialise device by device ID -- it checks if metadata exists and if 
         for device_id in device_ids:
