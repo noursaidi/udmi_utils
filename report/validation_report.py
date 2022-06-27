@@ -1,4 +1,4 @@
-""" Module with helper methods for reading UDMI validation report
+""" Master clas for validation report  .. probably call it report
 """
 from atexit import register
 import json
