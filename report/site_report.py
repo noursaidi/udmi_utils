@@ -88,7 +88,7 @@ class SiteReport:
             if device.seen:
                 self.devices_seen += 1
 
-            if len(device.errors) and device.seen == 0:
+            if len(device.errors) == 0 and device.seen:
                 self.devices_clean += 1
             
             self.total_errors += len(device.errors)
