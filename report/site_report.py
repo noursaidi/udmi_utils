@@ -13,14 +13,17 @@ from collections import Counter
 #from nmap_test_result import NmapTestResult
 
 
-class ValidationReport:
+class SiteReport:
     
     devices = {}
     iot_config = {}
     validation_report = {} # to check points and also get some report data
     errors = None
+
     devices_seen = 0 
     devices_model = 0 # sum .. filter .. device.seen = True
+    devices_clean = 0
+    total_errors = 0
 
     def __init__(self, site_path):
     
@@ -69,6 +72,7 @@ class ValidationReport:
 
         self.errors = self._read_errors()
         self.topErrors = self.errors.most_common(5)
+        self._gen_statistics()
 
     def _read_errors(self):
         errors = Counter()
@@ -77,3 +81,15 @@ class ValidationReport:
             errors.update(device.state.errors)
             errors.update(device.event_pointset.errors)
         return errors
+
+    def _gen_statistics(self):
+
+        for device in self.devices.values():
+            if device.seen:
+                self.devices_seen += 1
+
+            if len(device.errors) and device.seen == 0:
+                self.devices_clean += 1
+            
+            self.total_errors += len(device.errors)
+
