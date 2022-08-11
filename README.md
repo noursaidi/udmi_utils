@@ -9,6 +9,9 @@
 
 
 ## Report
+**NOTE** You must be using an older version of the UDMI tools. Do this by running:
+`git checkout 5cdec4ec9ab855cc61cf125f46a4371abcd51831` before running the validator
+
 Outputs HTML file which can be viewed in the browser.
 
 `python3 report/generate.py <FULL PATH TO SITE MODEL> <OUTPUT FILE PATH>` 
