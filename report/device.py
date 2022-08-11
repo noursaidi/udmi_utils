@@ -12,6 +12,9 @@ class Device:
     metadata = None
     
     registered_schema = []
+    
+    state = None
+    event_pointset = None
 
     derrors = []
     seen = False
@@ -43,8 +46,6 @@ class Device:
             print(schema)
             if getattr(self, schema).seen:
                 self.errors += getattr(self, schema).errors
-
-
 
     def _load_test_results(self):
         self._register_schema('state')

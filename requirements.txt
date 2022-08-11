@@ -1,2 +1,5 @@
 google-cloud-iot
 Jinja2
+dateutil
+pandas
+plotly
