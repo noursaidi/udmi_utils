@@ -8,5 +8,10 @@
 3. Install dependancies `pip3 -i requirements.txt`
 
 
-## Usage
+## Report
+Outputs HTML file which can be viewed in the browser.
+
+`python3 report/generate.py <FULL PATH TO SITE MODEL> <OUTPUT FILE PATH>` 
+e.g. `python3 report/generate.py /home/ubuntu/site_model /home/ubuntu/report.html`
+
 
