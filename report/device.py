@@ -21,12 +21,10 @@ class Device:
 
         # Errors assosciated with a file
 
-
     def __init__(self, device_id, site_path):
        
         self.site_path = site_path
         self.device_id = device_id
-        
         # load test results (validator results)
         self._load_test_results()
         #self._merge_results()

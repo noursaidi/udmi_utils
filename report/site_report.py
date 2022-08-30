@@ -61,17 +61,12 @@ class SiteReport:
             report_path = f"{os.path.normpath(site_path)}/out/validation_report.json"
             with open(report_path) as f:
                 self.validation_report = json.load(f)
-        except Exception:
-            pass
-
-        # Read validation summary
-
-        # Read registeration summary
+        except Exception as err:
+            raise err
 
         # initialise device by device ID -- it checks if metadata exists and if 
         for device_id in device_ids:
             self.devices[device_id] = Device(device_id, site_path)
-
         self.errors = self._read_errors()
         self.topErrors = self.errors.most_common(5)
         self._gen_statistics()

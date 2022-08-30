@@ -34,7 +34,7 @@ class ValidationResult:
                     payload = json.load(f)
                     self.timestamp = dateutil.parser.parse(payload['timestamp'])
             except Exception as e:
-                exit(e)
+                pass
 
         self.errors = self._read_errors(schema, error_path)
  
